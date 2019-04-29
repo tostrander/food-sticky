@@ -36,14 +36,11 @@
     </repeat>
     </p>
 
-    <p>Select Condiments
-        <check if="{{ @errors['cond'] }}">
-            <span class="err">{{ @errors['cond'] }}</span>
-        </check><br>
-        <repeat group="{{ @condiments }}" value="{{ @condOption }}">
-            <label><input type="checkbox" name="cond[]" value="{{ @condOption }}">{{ @condOption }}</label><br>
-        </repeat>
-    </p>
+    <!-- Add Condiments checkboxes here -->
+
+
+
+
 
     <input type="submit" value="Place Order">
 </form>

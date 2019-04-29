@@ -19,7 +19,6 @@ $f3->set('DEBUG', 3);
 
 //Define arrays
 $f3->set('meals', array('breakfast', 'lunch', 'dinner'));
-$f3->set('condiments', array('ketchup', 'mayonnaise', 'mustard'));
 
 //Define a default route
 $f3->route('GET /', function() {
@@ -34,12 +33,10 @@ $f3->route('GET|POST /order', function($f3) {
     //Get data from form
     $food = $_POST['food'];
     $meal = $_POST['meal'];
-    $cond = $_POST['cond'];
 
     //Add data to hive
     $f3->set('food', $food);
     $f3->set('meal', $meal);
-    $f3->set('cond', $cond);
 
     //If form has been submitted, validate
     if(!empty($_POST)) {
@@ -50,12 +47,6 @@ $f3->route('GET|POST /order', function($f3) {
             //Write data to Session
             $_SESSION['food'] = $food;
             $_SESSION['meal'] = $meal;
-            if (empty($cond)) {
-                $_SESSION['cond'] = "No condiments selected";
-            }
-            else {
-                $_SESSION['cond'] = implode(', ', $cond);
-            }
 
             //Redirect to Summary
             $f3->reroute('/summary');

@@ -44,7 +44,7 @@ function validForm()
  */
 function validFood($food)
 {
-    return false;
+    return true;
 }
 
 /* Validate quantity
@@ -56,7 +56,7 @@ function validFood($food)
  */
 function validQty($qty)
 {
-    return false;
+    return true;
 }
 
 /* Validate a meal
@@ -67,7 +67,7 @@ function validQty($qty)
 function validMeal($meal)
 {
     global $f3;
-    return false;
+    return true;
 }
 
 /* Validate condiments
@@ -78,5 +78,5 @@ function validMeal($meal)
 function validCondiments($cond)
 {
     global $f3;
-    return false;
+    return true;
 }
