@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Food Order</title>
+</head>
+<body>
+<h1>Food Order</h1>
+<form method="post" action="summary">
+
+    <label>Food Item
+        <input type="text" name="food">
+    </label><br><br>
+
+    <label>Quantity
+        <input type="text" name="qty">
+    </label>
+
+    <p>Select Meal<br>
+        <label><input type="radio" name="meal" value="breakfast">Breakfast</label><br>
+        <label><input type="radio" name="meal" value="lunch">Lunch</label><br>
+        <label><input type="radio" name="meal" value="dinner">Dinner</label><br>
+    </p>
+
+    <p>Select Condiments<br>
+        <label><input type="checkbox" name="cond[]" value="ketchup">Ketchup</label><br>
+        <label><input type="checkbox" name="cond[]" value="mayonnaise">Mayonnaise</label><br>
+        <label><input type="checkbox" name="cond[]" value="mustard">Mustard</label><br>
+    </p>
+
+    <input type="submit" value="Place Order">
+</form>
+</body>
+</html>
