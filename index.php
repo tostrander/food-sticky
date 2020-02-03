@@ -20,6 +20,7 @@ $f3->set('DEBUG', 3);
 //Define arrays
 $f3->set('meals', array('breakfast', 'lunch', 'dinner'));
 $f3->set('condiments', array('ketchup', 'mustard', 'mayonnaise'));
+$f3->set('drinks', array('Coke', 'Pepsi', 'water'));
 
 //Define a default route
 $f3->route('GET /', function() {
@@ -40,6 +41,7 @@ $f3->route('GET|POST /order', function($f3) {
         $food = $_POST['food'];
         $qty = $_POST['qty'];
         $meal = $_POST['meal'];
+        $drink = $_POST['drink'];
         if (!empty($_POST['condiments']))
             $selectedCondiments = $_POST['condiments'];
 
@@ -47,6 +49,7 @@ $f3->route('GET|POST /order', function($f3) {
         $f3->set('food', $food);
         $f3->set('qty', $qty);
         $f3->set('meal', $meal);
+        $f3->set('beverage', $drink);
         $f3->set('selectedCondiments', $selectedCondiments);
 
         //If data is valid
@@ -57,6 +60,7 @@ $f3->route('GET|POST /order', function($f3) {
             $_SESSION['qty'] = $qty;
             $_SESSION['meal'] = $meal;
             $_SESSION['condiments'] = $selectedCondiments;
+            $_SESSION['beverage'] = $drink;
 
             //Redirect to Summary
             $f3->reroute('/summary');

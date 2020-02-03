@@ -56,7 +56,7 @@
                           name="condiments[]"
                           value="{{ @condimentsOption }}"
 
-                <check if="{{ in_array(@condimentsOption, @selectedCondiments) }}">
+                <check if="{{ isset(@selectedCondiments) && in_array(@condimentsOption, @selectedCondiments) }}">
                     checked="checked"
                 </check>
 
@@ -64,6 +64,24 @@
             </label><br>
         </repeat>
     </p>
+
+    <!-- Beverages drop-down -->
+    <label>Select Beverage</label>
+    <select name="drink">
+        <option value="none">-- Select --</option>
+        <repeat group="{{ @drinks }}"
+                value="{{ @drink }}">
+            <option value="{{ @drink }}"
+
+            <check if="{{ @beverage == @drink }}">
+                selected="selected"
+            </check>
+            >{{ @drink }}
+            </option>
+        </repeat>
+    </select>
+
+    <br>
 
     <input type="submit" value="Place Order">
 </form>
