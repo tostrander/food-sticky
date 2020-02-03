@@ -31,6 +31,8 @@ $f3->route('GET /', function() {
 //Define an order route
 $f3->route('GET|POST /order', function($f3) {
 
+    $selectedCondiments = array();
+
     //If form has been submitted, validate
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -38,7 +40,8 @@ $f3->route('GET|POST /order', function($f3) {
         $food = $_POST['food'];
         $qty = $_POST['qty'];
         $meal = $_POST['meal'];
-        $selectedCondiments = !empty($_POST['condiments']) ? $_POST['condiments'] : array();
+        if (!empty($_POST['condiments']))
+            $selectedCondiments = $_POST['condiments'];
 
         //Add data to hive
         $f3->set('food', $food);

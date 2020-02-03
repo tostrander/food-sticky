@@ -16,7 +16,7 @@
 
     <!-- Food Item -->
     <label>Food Item
-        <input type="text" name="food" >
+        <input type="text" name="food" value="{{ @food }}" >
     </label>
     <check if="{{ @errors['food'] }}">
         <span class="err">{{ @errors['food'] }}</span>
@@ -24,7 +24,7 @@
 
     <!-- Quantity -->
     <label>Quantity
-        <input type="text" name="qty" >
+        <input type="text" name="qty" value="{{ @qty }}">
         <check if="{{ @errors['qty'] }}">
             <span class="err">{{ @errors['qty'] }}</span>
         </check>
@@ -38,7 +38,13 @@
     <repeat group="{{ @meals }}" value="{{ @mealOption }}">
         <label><input type="radio"
                       name="meal"
-                      value="{{ @mealOption }}">{{ @mealOption }}
+                      value="{{ @mealOption }}"
+
+                  <check if="{{ @meal == @mealOption }}">
+                      checked="checked"
+                  </check>
+
+        >{{ @mealOption }}
         </label><br>
     </repeat>
     </p>
@@ -48,7 +54,13 @@
         <repeat group="{{ @condiments }}" value="{{ @condimentsOption }}">
             <label><input type="checkbox"
                           name="condiments[]"
-                          value="{{ @condimentsOption }}">{{ @condimentsOption }}
+                          value="{{ @condimentsOption }}"
+
+                <check if="{{ in_array(@condimentsOption, @selectedCondiments) }}">
+                    checked="checked"
+                </check>
+
+            >{{ @condimentsOption }}
             </label><br>
         </repeat>
     </p>
