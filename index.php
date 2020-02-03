@@ -19,6 +19,7 @@ $f3->set('DEBUG', 3);
 
 //Define arrays
 $f3->set('meals', array('breakfast', 'lunch', 'dinner'));
+$f3->set('condiments', array('ketchup', 'mustard', 'mayonnaise'));
 
 //Define a default route
 $f3->route('GET /', function() {
@@ -30,23 +31,29 @@ $f3->route('GET /', function() {
 //Define an order route
 $f3->route('GET|POST /order', function($f3) {
 
-    //Get data from form
-    $food = $_POST['food'];
-    $meal = $_POST['meal'];
-
-    //Add data to hive
-    $f3->set('food', $food);
-    $f3->set('meal', $meal);
-
     //If form has been submitted, validate
-    if(!empty($_POST)) {
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        //Get data from form
+        $food = $_POST['food'];
+        $qty = $_POST['qty'];
+        $meal = $_POST['meal'];
+        $selectedCondiments = !empty($_POST['condiments']) ? $_POST['condiments'] : array();
+
+        //Add data to hive
+        $f3->set('food', $food);
+        $f3->set('qty', $qty);
+        $f3->set('meal', $meal);
+        $f3->set('selectedCondiments', $selectedCondiments);
 
         //If data is valid
         if (validForm()) {
 
             //Write data to Session
             $_SESSION['food'] = $food;
+            $_SESSION['qty'] = $qty;
             $_SESSION['meal'] = $meal;
+            $_SESSION['condiments'] = $selectedCondiments;
 
             //Redirect to Summary
             $f3->reroute('/summary');

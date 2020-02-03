@@ -44,7 +44,7 @@ function validForm()
  */
 function validFood($food)
 {
-    return true;
+    return !empty($food) && ctype_alpha($food);
 }
 
 /* Validate quantity
@@ -56,7 +56,9 @@ function validFood($food)
  */
 function validQty($qty)
 {
-    return true;
+    return !empty($qty)
+        && ctype_digit($qty)
+        && $qty >= 1;
 }
 
 /* Validate a meal
@@ -67,7 +69,7 @@ function validQty($qty)
 function validMeal($meal)
 {
     global $f3;
-    return true;
+    return in_array($meal, $f3->get('meals'));
 }
 
 /* Validate condiments

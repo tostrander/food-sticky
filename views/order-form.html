@@ -14,33 +14,44 @@
 <h1>Food Order</h1>
 <form method="post" action="#">
 
+    <!-- Food Item -->
     <label>Food Item
-        <input type="text" name="food">
+        <input type="text" name="food" >
     </label>
     <check if="{{ @errors['food'] }}">
         <span class="err">{{ @errors['food'] }}</span>
     </check><br><br>
 
-    <!-- Add Quantity field here -->
+    <!-- Quantity -->
+    <label>Quantity
+        <input type="text" name="qty" >
+        <check if="{{ @errors['qty'] }}">
+            <span class="err">{{ @errors['qty'] }}</span>
+        </check>
+    </label>
 
-
-
-
-
+    <!-- Meal -->
     <p>Select Meal
         <check if="{{ @errors['meal'] }}">
             <span class="err">{{ @errors['meal'] }}</span>
         </check><br>
     <repeat group="{{ @meals }}" value="{{ @mealOption }}">
-        <label><input type="radio" name="meal" value="{{ @mealOption }}">{{ @mealOption }}</label><br>
+        <label><input type="radio"
+                      name="meal"
+                      value="{{ @mealOption }}">{{ @mealOption }}
+        </label><br>
     </repeat>
     </p>
 
-    <!-- Add Condiments checkboxes here -->
-
-
-
-
+    <!-- Condiments -->
+    <p>Select Condiments<br>
+        <repeat group="{{ @condiments }}" value="{{ @condimentsOption }}">
+            <label><input type="checkbox"
+                          name="condiments[]"
+                          value="{{ @condimentsOption }}">{{ @condimentsOption }}
+            </label><br>
+        </repeat>
+    </p>
 
     <input type="submit" value="Place Order">
 </form>
